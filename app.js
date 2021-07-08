@@ -2,8 +2,6 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-dbURL = process.env.MY_MONGO_URI;
-
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -49,6 +47,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
+const dbURL = process.env.MY_MONGO_URI;
 const secret = process.env.SECRET || 'thisshouldbeabettersecret';
 // MongoDB session store
 const store = MongoStore.create({
