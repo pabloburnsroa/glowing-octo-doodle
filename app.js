@@ -49,11 +49,12 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret';
 // MongoDB session store
 const store = MongoStore.create({
   mongoUrl: dbURL,
   crypto: {
-    secret: 'thisshouldbeabettersecret',
+    secret,
   },
   touchAfter: 24 * 3600,
 });
@@ -66,7 +67,7 @@ const oneWeek = 1000 * 60 * 60 * 24 * 7;
 const sessionConfig = {
   store,
   name: 'session',
-  secret: 'thisshouldbeabettersecret',
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
