@@ -11,24 +11,27 @@ const router = express.Router({ mergeParams: true });
 const User = require('../models/User');
 const catchAsync = require('../utils/catchAsync');
 
-// Render register form
-router.get('/register', renderRegister);
+// Register Routes
+router
+  .route('/register')
+  // Render register form
+  .get(renderRegister)
+  // Register User
+  .post(catchAsync(registerUser));
 
-// Register User
-router.post('/register', catchAsync(registerUser));
-
-// Render login
-router.get('/login', renderLogin);
-
-// User Login
-router.post(
-  '/login',
-  passport.authenticate('local', {
-    failureRedirect: '/login',
-    failureFlash: true,
-  }),
-  login
-);
+// Login Routes
+router
+  .route('/login')
+  // Render login
+  .get(renderLogin)
+  // User Login
+  .post(
+    passport.authenticate('local', {
+      failureRedirect: '/login',
+      failureFlash: true,
+    }),
+    login
+  );
 
 // Logout route
 router.get('/logout', logout);

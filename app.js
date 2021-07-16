@@ -91,8 +91,10 @@ const scriptSrcUrls = [
   'https://cdnjs.cloudflare.com',
   'https://cdn.jsdelivr.net',
   'https://source.unsplash.com',
+  'https://images.unsplash.com',
 ];
 const styleSrcUrls = [
+  'https://stackpath.bootstrapcdn.com',
   'https://kit-free.fontawesome.com',
   'https://api.mapbox.com',
   'https://api.tiles.mapbox.com',
